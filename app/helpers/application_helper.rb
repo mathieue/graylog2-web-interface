@@ -120,7 +120,25 @@ module ApplicationHelper
       });
 
       $.post('#{url}', function(json) {
-          plot(json.data);
+        var data = json.data;
+        $.plot($('#{options[:inject]}'),
+          [ {
+              color: '#fd0c99',
+              shadowSize: 10,
+              data: data,
+              points: { show: false, },
+              lines: { show: true, fill: true }
+          } ],
+          {
+            xaxis: { mode: 'time' },
+            grid: {
+              show: true,
+              color: '#ccc',
+              borderWidth: 0,
+            },
+            selection: { mode: 'x' }
+          }
+        );
         }, 'json');
     </script>"
   end
