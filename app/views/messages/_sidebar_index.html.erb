@@ -20,8 +20,8 @@ Your current time: <%= gl_date(Time.zone.now) %>
   <p>No favorites.</p>
 <% else %>
   <% current_user.favorite_streams.each do |favorite| %>
+    <h4><%= favorite.title %></h4>
     <div id="sidebar-graph-<%= favorite.id %>" style="height: 50px;"></div>
-    <%= favorite.title %>
     <%=raw flot_graph_loader(
       :inject => "#sidebar-graph-" + favorite.id.to_s,
       :hours => 24,
