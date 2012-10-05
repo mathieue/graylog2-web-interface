@@ -11,25 +11,20 @@ Your current time: <%= gl_date(Time.zone.now) %>
 </div>
 <%=raw flot_graph_loader(
       :inject => "#sidebar-graph",
-      :hours => 24
+      :hours => 2
     )
 %>
 
-<h3>Favorite streams</h3>
+<h3>Favorite streams (4 hours)</h3>
+<ul id="favorite-streams">
 <% if current_user.favorite_streams.blank? %>
-  <p>No favorites.</p>
+  <li>No favorites.</li>
 <% else %>
   <% current_user.favorite_streams.each do |favorite| %>
-    <h4><%= favorite.title %></h4>
-    <div id="sidebar-graph-<%= favorite.id %>" style="height: 50px;"></div>
-    <%=raw flot_graph_loader(
-      :inject => "#sidebar-graph-" + favorite.id.to_s,
-      :hours => 24,
-      :stream_id => favorite.id
-    )
-    %>
+    <li><%=raw stream_link(favorite) %></li>
+  <% end %>
 <% end %>
-<% end %>
+</ul>
 
 <h3>Jobs & Tasks <%= tooltip("Notifications") %></h3>
 <ul id="jobsandtasks">

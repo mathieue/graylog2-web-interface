@@ -150,7 +150,7 @@ $(document).ready(function(){
       "html",
       {
         type: "line",
-        width: "40px",
+        width: "100%",
         lineColor: "#fd0c99",
         fillColor: "#fdd",
         spotColor: false,
